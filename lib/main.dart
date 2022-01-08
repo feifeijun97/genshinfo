@@ -54,37 +54,34 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  final channel = ClientChannel('10.0.2.2',
-      port: 50051,
-      options:
-          const ChannelOptions(credentials: ChannelCredentials.insecure()));
+
   // ignore: prefer_typing_uninitialized_variables
-  late CharacterListServiceClient stub;
+  // late CharacterListServiceClient stub;
 
   @override
   void initState() {
-    print("${channel.host}  ${channel.port}");
+    // print("${channel.host}  ${channel.port}");
     // TODO: implement initState
     tests();
     super.initState();
   }
 
   Future<void> tests() async {
-    stub = CharacterListServiceClient(channel,
-        options: CallOptions(timeout: Duration(seconds: 30)));
-    // Run all of the demos in order.
-    try {
-      await runGetFeature();
-    } catch (e) {
-      print('Caught error: $e');
-    }
-    await channel.shutdown();
+    // stub = CharacterListServiceClient(channel,
+    //     options: CallOptions(timeout: Duration(seconds: 30)));
+    // // Run all of the demos in order.
+    // try {
+    //   await runGetFeature();
+    // } catch (e) {
+    //   print('Caught error: $e');
+    // }
+    // await channel.shutdown();
   }
 
   Future<void> runGetFeature() async {
-    final c = CharacterListRequest();
-    var a = await stub.characterList(c);
-    print(a);
+    // final c = CharacterListRequest();
+    // var a = await stub.characterList(c);
+    // print(a);
   }
 
   void _incrementCounter() {
