@@ -22,7 +22,7 @@ class CustomAppBarState extends State<CustomAppBar> {
       color: Colors.transparent,
       child: Row(
         children: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
           Expanded(
               child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -31,12 +31,12 @@ class CustomAppBarState extends State<CustomAppBar> {
               Expanded(
                   child: SearchWidget(
                 searchCallback: (characterName) {
-                  print(characterName);
+                  // print(characterName);
                   //TODO:logic
                 },
                 rowAlignment: MainAxisAlignment.end,
               )),
-              IconButton(onPressed: () {}, icon: Icon(Icons.ac_unit)),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.ac_unit)),
             ],
           ))
         ],

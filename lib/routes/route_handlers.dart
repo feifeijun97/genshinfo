@@ -3,7 +3,7 @@
 // import '../components/home/home_component.dart';
 // import 'package:flutter/painting.dart';
 import 'package:fluro/fluro.dart';
-import 'package:genshinfo/features/character_list/view/character_list_page.dart';
+import 'package:genshinfo/features/character_list/views/character_list_page.dart';
 
 var rootHandler = Handler(
   handlerFunc: (context, params) {

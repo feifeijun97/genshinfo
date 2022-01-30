@@ -14,7 +14,6 @@ class _ElementFilterListState extends State<ElementFilterList> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     // _listofFiles();
   }
@@ -34,7 +33,7 @@ class _ElementFilterListState extends State<ElementFilterList> {
   @override
   Widget build(BuildContext context) {
     Widget iconButton(elementName, hexColor) {
-      return Container(
+      return SizedBox(
         width: 30,
         height: 30,
         child: ImageIcon(
@@ -44,7 +43,7 @@ class _ElementFilterListState extends State<ElementFilterList> {
       );
     }
 
-    return Container(
+    return SizedBox(
       width: (MediaQuery.of(context).size.width),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

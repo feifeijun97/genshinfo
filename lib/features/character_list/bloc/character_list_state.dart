@@ -20,11 +20,11 @@ class CharacterListLoading extends CharacterListState {
 class CharacterListResult extends CharacterListState {
   const CharacterListResult(
       {this.status = ListStatus.initial,
-      this.lists = const <CharacterList>[],
+      this.lists = const <Character>[],
       this.hasReachedMax = false});
 
   final ListStatus status;
-  final List<CharacterList> lists;
+  final List<Character> lists;
   final bool hasReachedMax;
 
   @override

@@ -26,7 +26,7 @@ class _SearchWidgetState extends State<SearchWidget>
     super.initState();
     characterNameTextFieldNode = FocusNode();
     animationController =
-        AnimationController(duration: Duration(seconds: 1), vsync: this);
+        AnimationController(duration: const Duration(seconds: 1), vsync: this);
     final curvedAnimation =
         CurvedAnimation(parent: animationController, curve: Curves.easeOutExpo);
 
@@ -50,14 +50,14 @@ class _SearchWidgetState extends State<SearchWidget>
       child: Row(
         mainAxisAlignment: widget.rowAlignment ?? MainAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             width: animation.value,
             child: TextField(
               controller: characterNameTextFieldController,
               focusNode: characterNameTextFieldNode,
               cursorColor: Colors.white12,
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
+              style: const TextStyle(color: Colors.white),
+              decoration: const InputDecoration(
                 hintText: 'Search..',
                 hintStyle: TextStyle(color: Colors.white10),
                 enabledBorder: UnderlineInputBorder(
@@ -70,30 +70,28 @@ class _SearchWidgetState extends State<SearchWidget>
             ),
           ),
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(25))),
           ),
-          Container(
-            child: IconButton(
-              onPressed: () {
-                //show / hide text field
-                if (!isForward) {
-                  animationController.forward();
-                  isForward = true;
-                  characterNameTextFieldNode.requestFocus();
-                } else {
-                  animationController.reverse();
-                  isForward = false;
-                  FocusScope.of(context).unfocus();
-                  //trigger callback if user enter some input
-                  if (characterNameTextFieldController.text.isNotEmpty) {
-                    widget
-                        .searchCallback(characterNameTextFieldController.text);
-                  }
+          IconButton(
+            onPressed: () {
+              //show / hide text field
+              if (!isForward) {
+                animationController.forward();
+                isForward = true;
+                characterNameTextFieldNode.requestFocus();
+              } else {
+                animationController.reverse();
+                isForward = false;
+                FocusScope.of(context).unfocus();
+                //trigger callback if user enter some input
+                if (characterNameTextFieldController.text.isNotEmpty) {
+                  widget
+                      .searchCallback(characterNameTextFieldController.text);
                 }
-              },
-              icon: Icon(Icons.search),
-            ),
+              }
+            },
+            icon: const Icon(Icons.search),
           )
         ],
       ),
