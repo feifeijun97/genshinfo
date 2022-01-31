@@ -1,7 +1,11 @@
 
 
+import 'package:json_annotation/json_annotation.dart';
 import 'enum.dart';
 
+part 'weapon.g.dart';
+
+@JsonSerializable()
 class Weapon{
   final String name;
   final WeaponType type;
@@ -13,4 +17,6 @@ class Weapon{
   final String location;
 
   Weapon(this.name, this.type, this.rarity, this.baseAttack, this.subStat, this.passiveName, this.passiveDesc, this.location);
+
+  factory Weapon.fromJson(Map<String, dynamic> json) => _$WeaponFromJson(json);
 }

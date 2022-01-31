@@ -1,1 +1,1 @@
-enum WeaponType { sword, bow, catalyst, claymore, polearm }
+enum WeaponType { sword, bow, catalyst, claymore, polearm, unkown }
