@@ -8,10 +8,12 @@ part of 'character.dart';
 
 Talent _$TalentFromJson(Map<String, dynamic> json) => Talent(
       json['name'] as String,
-      json['unlock'] as String,
+      json['unlock'] as String? ?? '',
       json['description'] as String,
-      Talent._talentTypeFromJson(json['type'] as String),
-      json['level'] as int,
+      json['type'] == null
+          ? TalentType.unknown
+          : Talent._talentTypeFromJson(json['type'] as String),
+      json['level'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$TalentToJson(Talent instance) => <String, dynamic>{
@@ -51,7 +53,7 @@ Character _$CharacterFromJson(Map<String, dynamic> json) => Character(
       Character._weaponFromJson(json['weapon'] as String),
       json['rarity'] as int,
       json['affiliation'] as String,
-      json['constellationName'] as String,
+      json['constellation'] as String,
       json['birthday'] as String,
       json['description'] as String,
       (json['skillTalents'] as List<dynamic>)
@@ -71,7 +73,7 @@ Map<String, dynamic> _$CharacterToJson(Character instance) => <String, dynamic>{
       'weapon': Character._weaponToJson(instance.weapon),
       'rarity': instance.rarity,
       'affiliation': instance.affiliation,
-      'constellationName': instance.constellationName,
+      'constellation': instance.constellationName,
       'birthday': instance.birthday,
       'description': instance.description,
       'skillTalents': instance.talents,

@@ -9,17 +9,20 @@ enum TalentType { normalAttack, elementSkill, elementBurst, unknown }
 @JsonSerializable()
 class Talent {
   final String name;
-  @JsonKey(includeIfNull: true)
+  @JsonKey(required: false, defaultValue: "")
   final String unlock;
   final String description;
-  @JsonKey(fromJson: _talentTypeFromJson, includeIfNull: true)
+  @JsonKey(
+      fromJson: _talentTypeFromJson,
+      required: false,
+      defaultValue: TalentType.unknown)
   final TalentType type;
-  @JsonKey(includeIfNull: true)
+  @JsonKey(required: false, defaultValue: 0)
   final int level;
 
   Talent(this.name, this.unlock, this.description, this.type, this.level);
 
-  factory Talent.fromJson(Map<String, dynamic> json ) => _$TalentFromJson(json);
+  factory Talent.fromJson(Map<String, dynamic> json) => _$TalentFromJson(json);
 
   // const Talent(
   //     {required this.name,
@@ -40,7 +43,6 @@ class Talent {
         return TalentType.unknown;
     }
   }
-
 }
 
 @JsonSerializable()
@@ -52,7 +54,8 @@ class Constellation {
 
   Constellation(this.name, this.unlock, this.description, this.level);
 
-  factory Constellation.fromJson(Map<String, dynamic> json ) => _$ConstellationFromJson(json);
+  factory Constellation.fromJson(Map<String, dynamic> json) =>
+      _$ConstellationFromJson(json);
   // const Constellation(
   //     {required this.name,
   //     required this.unlock,
@@ -69,6 +72,7 @@ class Character {
   final WeaponType weapon;
   final int rarity;
   final String affiliation;
+  @JsonKey(name: "constellation")
   final String constellationName;
   final String birthday;
   final String description;
@@ -90,9 +94,10 @@ class Character {
       this.passiveTalents,
       this.constellations);
 
-  factory Character.fromJson(Map<String,dynamic> json) => _$CharacterFromJson(json);
+  factory Character.fromJson(Map<String, dynamic> json) =>
+      _$CharacterFromJson(json);
 
-  Map<String,dynamic> toJson() => _$CharacterToJson(this);
+  Map<String, dynamic> toJson() => _$CharacterToJson(this);
 
   static Vision _visionFromJson(String vision) {
     switch (vision) {
