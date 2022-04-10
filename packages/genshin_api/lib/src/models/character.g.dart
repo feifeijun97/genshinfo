@@ -49,8 +49,10 @@ Map<String, dynamic> _$ConstellationToJson(Constellation instance) =>
 
 Character _$CharacterFromJson(Map<String, dynamic> json) => Character(
       json['name'] as String,
-      Character._visionFromJson(json['vision'] as String),
-      Character._weaponFromJson(json['weapon'] as String),
+      $enumDecode(_$VisionEnumMap, json['vision'],
+          unknownValue: Vision.unknown),
+      $enumDecode(_$WeaponTypeEnumMap, json['weapon'],
+          unknownValue: WeaponType.unkown),
       json['rarity'] as int,
       json['affiliation'] as String,
       json['constellation'] as String,
@@ -82,13 +84,21 @@ Map<String, dynamic> _$CharacterToJson(Character instance) => <String, dynamic>{
     };
 
 const _$VisionEnumMap = {
-  Vision.none: 'none',
-  Vision.pyro: 'pyro',
-  Vision.cryo: 'cryo',
-  Vision.anemo: 'anemo',
-  Vision.geo: 'geo',
-  Vision.electro: 'electro',
-  Vision.hydro: 'hydro',
-  Vision.dendro: 'dendro',
+  Vision.pyro: 'Pyro',
+  Vision.cryo: 'Cryo',
+  Vision.anemo: 'Anemo',
+  Vision.geo: 'Geo',
+  Vision.electro: 'Electro',
+  Vision.hydro: 'Hydro',
+  Vision.dendro: 'Dendro',
   Vision.unknown: 'unknown',
+};
+
+const _$WeaponTypeEnumMap = {
+  WeaponType.sword: 'Sword',
+  WeaponType.bow: 'Bow',
+  WeaponType.catalyst: 'Catalyst',
+  WeaponType.claymore: 'Claymore',
+  WeaponType.polearm: 'Polearm',
+  WeaponType.unkown: 'unkown',
 };

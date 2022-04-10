@@ -2,6 +2,8 @@
 // import 'package:genshinfo/services/grpc_client.dart';
 // import 'package:grpc/grpc.dart';
 
+import 'package:equatable/equatable.dart';
+
 enum Vision { none, pyro, cryo, anemo, geo, electro, hydro, dendro }
 enum Weapon { sword, bow, catalyst, claymore, polearm }
 
@@ -58,3 +60,5 @@ class Character {
     return characters;
   }
 }
+
+
