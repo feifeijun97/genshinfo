@@ -1,22 +1,22 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'enum.dart';
+import 'weapon_type.dart';
 
 part 'character.g.dart';
 
 enum Vision {
-  @JsonValue('pyro')
+  @JsonValue('Pyro')
   pyro,
-  @JsonValue('cryo')
+  @JsonValue('Cryo')
   cryo,
-  @JsonValue('anemo')
+  @JsonValue('Anemo')
   anemo,
-  @JsonValue('geo')
+  @JsonValue('Geo')
   geo,
-  @JsonValue('electro')
+  @JsonValue('Electro')
   electro,
-  @JsonValue('hydro')
+  @JsonValue('Hydro')
   hydro,
-  @JsonValue('dendro')
+  @JsonValue('Dendro')
   dendro,
   unknown
 }
