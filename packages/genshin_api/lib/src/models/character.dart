@@ -1,9 +1,25 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'enum.dart';
+import 'weapon_type.dart';
 
 part 'character.g.dart';
 
-enum Vision { none, pyro, cryo, anemo, geo, electro, hydro, dendro, unknown }
+enum Vision {
+  @JsonValue('Pyro')
+  pyro,
+  @JsonValue('Cryo')
+  cryo,
+  @JsonValue('Anemo')
+  anemo,
+  @JsonValue('Geo')
+  geo,
+  @JsonValue('Electro')
+  electro,
+  @JsonValue('Hydro')
+  hydro,
+  @JsonValue('Dendro')
+  dendro,
+  unknown
+}
 enum TalentType { normalAttack, elementSkill, elementBurst, unknown }
 
 @JsonSerializable()
@@ -66,9 +82,9 @@ class Constellation {
 @JsonSerializable()
 class Character {
   final String name;
-  @JsonKey(fromJson: _visionFromJson)
+  @JsonKey(unknownEnumValue: Vision.unknown)
   final Vision vision;
-  @JsonKey(fromJson: _weaponFromJson, toJson: _weaponToJson)
+  @JsonKey(unknownEnumValue: WeaponType.unkown, toJson: _weaponToJson)
   final WeaponType weapon;
   final int rarity;
   final String affiliation;
@@ -98,44 +114,6 @@ class Character {
       _$CharacterFromJson(json);
 
   Map<String, dynamic> toJson() => _$CharacterToJson(this);
-
-  static Vision _visionFromJson(String vision) {
-    switch (vision) {
-      case "Anemo":
-        return Vision.anemo;
-      case "Cryo":
-        return Vision.cryo;
-      case "Dendro":
-        return Vision.dendro;
-      case "Electro":
-        return Vision.electro;
-      case "Geo":
-        return Vision.geo;
-      case "Hydro":
-        return Vision.hydro;
-      case "Pyro":
-        return Vision.pyro;
-      default:
-        return Vision.unknown;
-    }
-  }
-
-  static WeaponType _weaponFromJson(String weapon) {
-    switch (weapon) {
-      case "Bow":
-        return WeaponType.bow;
-      case "Catalyst":
-        return WeaponType.catalyst;
-      case "Claymore":
-        return WeaponType.claymore;
-      case "Polearm":
-        return WeaponType.polearm;
-      case "Sword":
-        return WeaponType.sword;
-      default:
-        return WeaponType.unkown;
-    }
-  }
 
   static String _weaponToJson(WeaponType weapon) {
     switch (weapon) {

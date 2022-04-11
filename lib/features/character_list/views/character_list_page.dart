@@ -15,13 +15,14 @@ class CharacterListPage extends StatefulWidget {
 }
 
 class CharacterListPageState extends State<CharacterListPage> {
-    CharacterListBloc bloc = CharacterListBloc();
+  CharacterListBloc bloc = CharacterListBloc();
 
   @override
   void initState() {
     bloc.add(const RetrieveCharacterList());
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -37,36 +38,36 @@ class CharacterListPageState extends State<CharacterListPage> {
         Center(
           child: Image.asset(
             'images/logo/logo.png',
-            width: 250,
-            height: 150,
+            height: 100,
           ),
         ),
         Row(
           children: const [ElementFilterList()],
         ),
         Expanded(
+            flex: 6,
             child: BlocBuilder<CharacterListBloc, CharacterListState>(
-          bloc: bloc,
-          builder: (context, state) {
-            if (state is CharacterListResult) {
-              return GridView.count(
-                  crossAxisCount: 2,
-                  scrollDirection: Axis.vertical,
-                  childAspectRatio: (itemWidth / itemHeight),
-                  children: [
-                    for (Character c in state.lists)
-                      characterCard(
-                          name: c.name,
-                          vision: c.vision,
-                          weapon: c.weapon,
-                          rarity: c.rarity,
-                          id: c.id,
-                          imageUrl: c.imageUrl)
-                  ]);
-            }
-            return const SizedBox();
-          },
-        ))
+              bloc: bloc,
+              builder: (context, state) {
+                if (state is CharacterListResult) {
+                  return GridView.count(
+                      crossAxisCount: 2,
+                      scrollDirection: Axis.vertical,
+                      childAspectRatio: (itemWidth / itemHeight),
+                      children: [
+                        for (Character c in state.lists)
+                          characterCard(
+                              name: c.name,
+                              vision: c.vision,
+                              weapon: c.weapon,
+                              rarity: c.rarity,
+                              id: c.id,
+                              imageUrl: c.imageUrl)
+                      ]);
+                }
+                return const SizedBox();
+              },
+            ))
       ]),
     );
   }

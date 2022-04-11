@@ -29,10 +29,10 @@ Map<String, dynamic> _$WeaponToJson(Weapon instance) => <String, dynamic>{
     };
 
 const _$WeaponTypeEnumMap = {
-  WeaponType.sword: 'sword',
-  WeaponType.bow: 'bow',
-  WeaponType.catalyst: 'catalyst',
-  WeaponType.claymore: 'claymore',
-  WeaponType.polearm: 'polearm',
+  WeaponType.sword: 'Sword',
+  WeaponType.bow: 'Bow',
+  WeaponType.catalyst: 'Catalyst',
+  WeaponType.claymore: 'Claymore',
+  WeaponType.polearm: 'Polearm',
   WeaponType.unkown: 'unkown',
 };

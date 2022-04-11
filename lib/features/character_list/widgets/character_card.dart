@@ -38,7 +38,7 @@ Widget characterCard(
               imageUrl,
               width: 180,
               height: 260,
-              fit: BoxFit.cover,
+              fit: BoxFit.fitHeight,
             ),
           ),
           Container(
@@ -73,7 +73,6 @@ Widget characterCard(
               ),
             ),
           ),
-         
         ],
       ));
 }
