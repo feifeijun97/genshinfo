@@ -84,8 +84,10 @@ List<HexColor> getVisionHexColor(Vision vision) {
         HexColor('#F9A661'),
       ];
     case Vision.cryo:
-      // TODO: Handle this case.
-      break;
+      return [
+        HexColor('#448DC7'),
+        HexColor('#77B8EB'),
+      ];
     case Vision.anemo:
       return [
         HexColor('#019E8A'),
@@ -97,49 +99,45 @@ List<HexColor> getVisionHexColor(Vision vision) {
         HexColor('#ffd589'),
       ];
     case Vision.electro:
-      // TODO: Handle this case.
-      break;
+      return [
+        HexColor('#61459c'),
+        HexColor('#7b5db7'),
+      ];
     case Vision.hydro:
       return [
         HexColor('#07519D'),
         HexColor('#459CF5'),
       ];
     case Vision.dendro:
-      // TODO: Handle this case.
-      break;
+      return [
+        HexColor('#04862A'),
+        HexColor('#00BC37'),
+      ];
     case Vision.unknown:
-      // TODO: Handle this case.
-      break;
+      return [
+        HexColor('#9a6604'),
+        HexColor('#ffd589'),
+      ];
   }
-
-  return [
-    HexColor('#9a6604'),
-    HexColor('#ffd589'),
-  ];
 }
 
 HexColor getVisionTextColor(Vision vision) {
   switch (vision) {
     case Vision.unknown:
-      // TODO: Handle this case.
-      break;
+      return HexColor("FFFFFF");
     case Vision.pyro:
       return HexColor('#fe925d');
     case Vision.cryo:
-      // TODO: Handle this case.
-      break;
+      return HexColor("3b83bd");
     case Vision.anemo:
       return HexColor('#72e2c3');
     case Vision.geo:
       return HexColor('#e3b342');
     case Vision.electro:
-      // TODO: Handle this case.
-      break;
+      return HexColor('#A754DC');
     case Vision.hydro:
       return HexColor('#21e1eb');
     case Vision.dendro:
-      // TODO: Handle this case.
-      break;
+      return HexColor('#2FD340');
   }
-  return HexColor("FFFFFF");
 }
