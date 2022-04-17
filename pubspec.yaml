@@ -35,6 +35,8 @@ dependencies:
   fluro: ^2.0.3
   sizer: ^2.0.15
   hexcolor: ^2.0.5
+  genshin_api:
+    path: packages/genshin_api
 
 
 

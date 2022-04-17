@@ -1,64 +1,69 @@
-// import 'package:genshinfo/features/character_list/protos/character.pbgrpc.dart';
-// import 'package:genshinfo/services/grpc_client.dart';
-// import 'package:grpc/grpc.dart';
-
+import 'package:genshin_api/genshin_api.dart' hide Character;
+import 'package:genshin_api/genshin_api.dart' as genshin_api;
 import 'package:equatable/equatable.dart';
 
-enum Vision { none, pyro, cryo, anemo, geo, electro, hydro, dendro }
-enum Weapon { sword, bow, catalyst, claymore, polearm }
-
-class Character {
-  late int id;
-  late String name;
-  late int rarity;
-  late Vision vision;
-  late Weapon weapon;
-  late String imageUrl;
-  Character(
+class Character extends Equatable {
+  const Character(
       {required this.name,
-      required this.rarity,
       required this.vision,
       required this.weapon,
       required this.imageUrl,
-      required this.id});
+      required this.rarity});
 
-  static getCharacterListFromServer() {
-    // ClientChannel channel = GrpcClient().client;
-    // CharacterListServiceClient stub = CharacterListServiceClient(channel,
-    //     options: CallOptions(timeout: const Duration(seconds: 30)));
+  // const Character({required this.name});
 
-    List<Character> characters = [];
-    characters.add(Character(
-        id: 1,
-        name: "Tartaglia",
-        vision: Vision.hydro,
-        weapon: Weapon.bow,
-        imageUrl: 'https://api.genshin.dev/characters/tartaglia/portrait',
-        rarity: 5));
-    characters.add(Character(
-        id: 2,
-        name: "Noelle",
-        vision: Vision.geo,
-        weapon: Weapon.claymore,
-        imageUrl: 'https://api.genshin.dev/characters/noelle/portrait',
-        rarity: 4));
-    characters.add(Character(
-        id: 3,
-        name: "Diluc",
-        vision: Vision.pyro,
-        weapon: Weapon.claymore,
-        imageUrl: 'https://api.genshin.dev/characters/diluc/portrait',
-        rarity: 5));
-    characters.add(Character(
-        id: 4,
-        name: "Jean",
-        vision: Vision.anemo,
-        weapon: Weapon.sword,
-        imageUrl: 'https://api.genshin.dev/characters/jean/portrait',
-        rarity: 5));
+  @override
+  List<Object?> get props => [name, vision, weapon, imageUrl, rarity];
 
-    return characters;
+  final String name;
+  final Vision vision;
+  final WeaponType weapon;
+  final String imageUrl;
+  final int rarity;
+
+  factory Character.fromRepository(genshin_api.Character character) {
+    return Character(
+        name: character.name,
+        vision: character.vision,
+        weapon: character.weapon,
+        imageUrl:
+            "https://api.genshin.dev/characters/${character.name}/portrait",
+        rarity: character.rarity);
+  }
+
+  Character copyWith(
+      {String? name,
+      Vision? vision,
+      WeaponType? weapon,
+      String? imageUrl,
+      int? rarity}) {
+    return Character(
+        name: name ?? this.name,
+        vision: vision ?? this.vision,
+        weapon: weapon ?? this.weapon,
+        imageUrl: imageUrl ?? this.imageUrl,
+        rarity: rarity ?? this.rarity);
   }
 }
 
+class CharacterList extends Equatable {
+  const CharacterList({required this.characterList});
 
+  @override
+  List<Object?> get props => [characterList];
+
+  final List<Character> characterList;
+
+  CharacterList copyWith({List<Character>? characterList}) {
+    return CharacterList(
+      characterList: characterList ?? this.characterList,
+    );
+  }
+
+  factory CharacterList.fromRepository(
+      List<genshin_api.Character> characterList) {
+    return CharacterList(
+        characterList: List<Character>.from(
+            characterList.map((e) => Character.fromRepository(e))));
+  }
+}

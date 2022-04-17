@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:genshin_api/genshin_api.dart' hide Character;
 import 'package:genshinfo/features/character_list/bloc/character_list_bloc.dart';
 import 'package:genshinfo/features/character_list/models/character.dart';
 import 'package:genshinfo/features/character_list/widgets/custom_app_bar.dart';
@@ -15,7 +16,7 @@ class CharacterListPage extends StatefulWidget {
 }
 
 class CharacterListPageState extends State<CharacterListPage> {
-  CharacterListBloc bloc = CharacterListBloc();
+  CharacterListBloc bloc = CharacterListBloc(GenshinApiClient());
 
   @override
   void initState() {
@@ -49,19 +50,18 @@ class CharacterListPageState extends State<CharacterListPage> {
             child: BlocBuilder<CharacterListBloc, CharacterListState>(
               bloc: bloc,
               builder: (context, state) {
-                if (state is CharacterListResult) {
+                if (state.status.isSuccess) {
                   return GridView.count(
                       crossAxisCount: 2,
                       scrollDirection: Axis.vertical,
                       childAspectRatio: (itemWidth / itemHeight),
                       children: [
-                        for (Character c in state.lists)
+                        for (Character c in state.characterList.characterList)
                           characterCard(
                               name: c.name,
                               vision: c.vision,
                               weapon: c.weapon,
                               rarity: c.rarity,
-                              id: c.id,
                               imageUrl: c.imageUrl)
                       ]);
                 }

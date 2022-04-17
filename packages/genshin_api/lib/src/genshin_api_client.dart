@@ -11,7 +11,7 @@ class CharacterNotFound implements Exception {}
 class EmptyCharacterList implements Exception {}
 
 class GenshinApiClient {
-  static const _baseUrl = "api.genshin.dev";
+  static const _baseUrl = "https://api.genshin.dev";
   final http.Client _httpClient;
 
   GenshinApiClient({http.Client? httpClient})

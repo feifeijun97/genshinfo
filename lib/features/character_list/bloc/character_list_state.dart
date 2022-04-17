@@ -1,32 +1,33 @@
 part of 'character_list_bloc.dart';
 
-enum ListStatus { initial, success, failure }
+enum CharacterListStatus { initial, loading, success, failure }
 
-@immutable
-abstract class CharacterListState extends Equatable {
-  const CharacterListState();
+extension CharacterListStatusX on CharacterListStatus {
+  bool get isInitial => this == CharacterListStatus.initial;
+  bool get isLoading => this == CharacterListStatus.loading;
+  bool get isSuccess => this == CharacterListStatus.success;
+  bool get isFailure => this == CharacterListStatus.failure;
 }
 
-class CharacterListInitial extends CharacterListState {
+class CharacterListState extends Equatable {
+  CharacterListState(
+      {this.status = CharacterListStatus.initial, CharacterList? characterList})
+      : characterList = characterList ??
+            CharacterList(characterList: List<Character>.empty());
+
+  final CharacterListStatus status;
+  final CharacterList characterList;
+
+  CharacterListState copyWith({
+    CharacterListStatus? status,
+    CharacterList? characterList,
+  }) {
+    return CharacterListState(
+      status: status ?? this.status,
+      characterList: characterList ?? this.characterList,
+    );
+  }
+
   @override
-  List<Object> get props => [];
-}
-
-class CharacterListLoading extends CharacterListState {
-  @override
-  List<Object> get props => [];
-}
-
-class CharacterListResult extends CharacterListState {
-  const CharacterListResult(
-      {this.status = ListStatus.initial,
-      this.lists = const <Character>[],
-      this.hasReachedMax = false});
-
-  final ListStatus status;
-  final List<Character> lists;
-  final bool hasReachedMax;
-
-  @override
-  List<Object> get props => [hasReachedMax];
+  List<Object?> get props => [status, characterList];
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:genshinfo/features/character_list/models/character.dart';
+import 'package:genshin_api/genshin_api.dart' hide Character;
 import 'package:hexcolor/hexcolor.dart';
 
 import 'clippers/character_background_clipper.dart';
@@ -8,9 +8,8 @@ import 'clippers/character_image_clipper.dart';
 Widget characterCard(
     {required String name,
     required Vision vision,
-    required Weapon weapon,
+    required WeaponType weapon,
     required int rarity,
-    required int id,
     required String imageUrl}) {
   return SizedBox(
       width: 150,
@@ -108,7 +107,7 @@ List<HexColor> getVisionHexColor(Vision vision) {
     case Vision.dendro:
       // TODO: Handle this case.
       break;
-    case Vision.none:
+    case Vision.unknown:
       // TODO: Handle this case.
       break;
   }
@@ -121,7 +120,7 @@ List<HexColor> getVisionHexColor(Vision vision) {
 
 HexColor getVisionTextColor(Vision vision) {
   switch (vision) {
-    case Vision.none:
+    case Vision.unknown:
       // TODO: Handle this case.
       break;
     case Vision.pyro:
