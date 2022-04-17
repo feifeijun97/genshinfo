@@ -56,7 +56,7 @@ Character _$CharacterFromJson(Map<String, dynamic> json) => Character(
       json['rarity'] as int,
       json['affiliation'] as String,
       json['constellation'] as String,
-      json['birthday'] as String,
+      json['birthday'] as String?,
       json['description'] as String,
       (json['skillTalents'] as List<dynamic>)
           .map((e) => Talent.fromJson(e as Map<String, dynamic>))
@@ -69,19 +69,29 @@ Character _$CharacterFromJson(Map<String, dynamic> json) => Character(
           .toList(),
     );
 
-Map<String, dynamic> _$CharacterToJson(Character instance) => <String, dynamic>{
-      'name': instance.name,
-      'vision': _$VisionEnumMap[instance.vision],
-      'weapon': Character._weaponToJson(instance.weapon),
-      'rarity': instance.rarity,
-      'affiliation': instance.affiliation,
-      'constellation': instance.constellationName,
-      'birthday': instance.birthday,
-      'description': instance.description,
-      'skillTalents': instance.talents,
-      'passiveTalents': instance.passiveTalents,
-      'constellations': instance.constellations,
-    };
+Map<String, dynamic> _$CharacterToJson(Character instance) {
+  final val = <String, dynamic>{
+    'name': instance.name,
+    'vision': _$VisionEnumMap[instance.vision],
+    'weapon': Character._weaponToJson(instance.weapon),
+    'rarity': instance.rarity,
+    'affiliation': instance.affiliation,
+    'constellation': instance.constellationName,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('birthday', instance.birthday);
+  val['description'] = instance.description;
+  val['skillTalents'] = instance.talents;
+  val['passiveTalents'] = instance.passiveTalents;
+  val['constellations'] = instance.constellations;
+  return val;
+}
 
 const _$VisionEnumMap = {
   Vision.pyro: 'Pyro',

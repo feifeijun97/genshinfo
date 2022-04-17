@@ -90,7 +90,8 @@ class Character {
   final String affiliation;
   @JsonKey(name: "constellation")
   final String constellationName;
-  final String birthday;
+  @JsonKey(includeIfNull: false)
+  final String? birthday;
   final String description;
   @JsonKey(name: "skillTalents")
   final List<Talent> talents;
