@@ -22,12 +22,15 @@ class Character extends Equatable {
   final int rarity;
 
   factory Character.fromRepository(genshin_api.Character character) {
+    //get firt name of the character if full name returned
+    //some character return full name, but url only support first name
+    String characterName = modifyName(character.name);
+
     return Character(
         name: character.name,
         vision: character.vision,
         weapon: character.weapon,
-        imageUrl:
-            "https://api.genshin.dev/characters/${character.name}/portrait",
+        imageUrl: "https://api.genshin.dev/characters/$characterName/portrait",
         rarity: character.rarity);
   }
 
@@ -43,6 +46,35 @@ class Character extends Equatable {
         weapon: weapon ?? this.weapon,
         imageUrl: imageUrl ?? this.imageUrl,
         rarity: rarity ?? this.rarity);
+  }
+
+  /// Change the returned name to url-suitable name
+  static String modifyName(String name) {
+    List<String> takeLastNameList = [
+      'Kamisato Ayaka',
+      'Sangonomiya Kokomi',
+      'Kujou Sara',
+      'Kaedehara Kazuha'
+    ];
+    List<String> takeFirstNameList = ['Raiden Shogun'];
+    List<String> addDashList = ['Arataki Itto', 'Hu Tao', 'Yun Jin'];
+    String traveler = "Traveler";
+    String finalName = "";
+    if (name == traveler) {
+      finalName = "Traveler-Anemo";
+    } else if (takeFirstNameList.contains(name)) {
+      var splittedName = name.split(' ');
+      finalName = splittedName[0];
+    } else if (takeLastNameList.contains(name)) {
+      var splittedName = name.split(' ');
+      finalName = splittedName[1];
+    } else if (addDashList.contains(name)) {
+      finalName = name.replaceAll(' ', '-');
+    } else {
+      finalName = name;
+    }
+
+    return finalName.toLowerCase();
   }
 }
 
