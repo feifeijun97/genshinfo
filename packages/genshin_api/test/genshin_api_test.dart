@@ -1,12 +1,34 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:genshin_api/genshin_api.dart';
+import 'package:mocktail/mocktail.dart';
+
+class MockHttpClient extends Mock implements http.Client {}
+
+class MockResponse extends Mock implements http.Response {}
+
+class FakeUri extends Fake implements Uri {}
 
 void main() {
-  // test('adds one to input values', () {
-  //   final calculator = Calculator();
-  //   expect(calculator.addOne(2), 3);
-  //   expect(calculator.addOne(-7), -6);
-  //   expect(calculator.addOne(0), 1);
-  // });
+  group('GenshinApiClient', () {
+    late http.Client httpClient;
+    late GenshinApiClient genshinApiClient;
+
+    setUpAll(() {
+      registerFallbackValue(FakeUri());
+    });
+
+    group('constructor', () {
+      test('does not require an httpClient', () {
+        expect(GenshinApiClient(), isNotNull);
+      });
+    });
+
+    group('character', () {
+      group('getOne', () {
+        test("Able to get one character and parsed it ", () {});
+      });
+    });
+  });
 }
