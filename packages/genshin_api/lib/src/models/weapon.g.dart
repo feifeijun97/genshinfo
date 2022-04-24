@@ -34,5 +34,4 @@ const _$WeaponTypeEnumMap = {
   WeaponType.catalyst: 'Catalyst',
   WeaponType.claymore: 'Claymore',
   WeaponType.polearm: 'Polearm',
-  WeaponType.unkown: 'unkown',
 };

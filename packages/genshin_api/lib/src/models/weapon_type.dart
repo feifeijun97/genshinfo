@@ -11,5 +11,4 @@ enum WeaponType {
   claymore,
   @JsonValue('Polearm')
   polearm,
-  unkown
 }

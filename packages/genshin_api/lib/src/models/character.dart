@@ -1,25 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'weapon_type.dart';
-
+import 'vision.dart';
 part 'character.g.dart';
 
-enum Vision {
-  @JsonValue('Pyro')
-  pyro,
-  @JsonValue('Cryo')
-  cryo,
-  @JsonValue('Anemo')
-  anemo,
-  @JsonValue('Geo')
-  geo,
-  @JsonValue('Electro')
-  electro,
-  @JsonValue('Hydro')
-  hydro,
-  @JsonValue('Dendro')
-  dendro,
-  unknown
-}
 enum TalentType { normalAttack, elementSkill, elementBurst, unknown }
 
 @JsonSerializable()
@@ -82,9 +65,8 @@ class Constellation {
 @JsonSerializable()
 class Character {
   final String name;
-  @JsonKey(unknownEnumValue: Vision.unknown)
   final Vision vision;
-  @JsonKey(unknownEnumValue: WeaponType.unkown, toJson: _weaponToJson)
+  @JsonKey(toJson: _weaponToJson)
   final WeaponType weapon;
   final int rarity;
   final String affiliation;
