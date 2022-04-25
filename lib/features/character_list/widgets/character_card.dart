@@ -113,18 +113,12 @@ List<HexColor> getVisionHexColor(Vision vision) {
         HexColor('#04862A'),
         HexColor('#00BC37'),
       ];
-    case Vision.unknown:
-      return [
-        HexColor('#9a6604'),
-        HexColor('#ffd589'),
-      ];
   }
 }
 
 HexColor getVisionTextColor(Vision vision) {
   switch (vision) {
-    case Vision.unknown:
-      return HexColor("FFFFFF");
+
     case Vision.pyro:
       return HexColor('#fe925d');
     case Vision.cryo:
