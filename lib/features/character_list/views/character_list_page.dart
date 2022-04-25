@@ -5,8 +5,9 @@ import 'package:genshinfo/features/character_list/bloc/character_list_bloc.dart'
 import 'package:genshinfo/features/character_list/models/character.dart';
 import 'package:genshinfo/features/character_list/widgets/custom_app_bar.dart';
 import 'package:genshinfo/features/character_list/widgets/character_card.dart';
-import 'package:genshinfo/features/character_list/widgets/element_filter.dart';
+// import 'package:genshinfo/features/character_list/widgets/element_filter.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:sizer/sizer.dart';
 
 class CharacterListPage extends StatefulWidget {
   const CharacterListPage({Key? key}) : super(key: key);
@@ -39,35 +40,36 @@ class CharacterListPageState extends State<CharacterListPage> {
         Center(
           child: Image.asset(
             'images/logo/logo.png',
-            height: 100,
+            height: 15.w,
           ),
         ),
-        Row(
-          children: const [ElementFilterList()],
-        ),
+        // Row(
+        //   children: const [ElementFilterList()],
+        // ),
         Expanded(
-            flex: 6,
-            child: BlocBuilder<CharacterListBloc, CharacterListState>(
-              bloc: bloc,
-              builder: (context, state) {
-                if (state.status.isSuccess) {
-                  return GridView.count(
-                      crossAxisCount: 2,
-                      scrollDirection: Axis.vertical,
-                      childAspectRatio: (itemWidth / itemHeight),
-                      children: [
-                        for (Character c in state.characterList.characterList)
-                          characterCard(
-                              name: c.name,
-                              vision: c.vision,
-                              weapon: c.weapon,
-                              rarity: c.rarity,
-                              imageUrl: c.imageUrl)
-                      ]);
-                }
-                return const SizedBox();
-              },
-            ))
+          flex: 6,
+          child: BlocBuilder<CharacterListBloc, CharacterListState>(
+            bloc: bloc,
+            builder: (context, state) {
+              if (state.status.isSuccess) {
+                return GridView.count(
+                    crossAxisCount: 2,
+                    scrollDirection: Axis.vertical,
+                    childAspectRatio: (itemWidth / itemHeight),
+                    children: [
+                      for (Character c in state.characterList.characterList)
+                        characterCard(
+                            name: c.name,
+                            vision: c.vision,
+                            weapon: c.weapon,
+                            rarity: c.rarity,
+                            imageUrl: c.imageUrl)
+                    ]);
+              }
+              return const SizedBox();
+            },
+          ),
+        )
       ]),
     );
   }

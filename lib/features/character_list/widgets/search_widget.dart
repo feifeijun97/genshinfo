@@ -74,25 +74,25 @@ class _SearchWidgetState extends State<SearchWidget>
                 borderRadius: BorderRadius.all(Radius.circular(25))),
           ),
           IconButton(
-            onPressed: () {
-              //show / hide text field
-              if (!isForward) {
-                animationController.forward();
-                isForward = true;
-                characterNameTextFieldNode.requestFocus();
-              } else {
-                animationController.reverse();
-                isForward = false;
-                FocusScope.of(context).unfocus();
-                //trigger callback if user enter some input
-                if (characterNameTextFieldController.text.isNotEmpty) {
-                  widget
-                      .searchCallback(characterNameTextFieldController.text);
+              onPressed: () {
+                //show / hide text field
+                if (!isForward) {
+                  animationController.forward();
+                  isForward = true;
+                  characterNameTextFieldNode.requestFocus();
+                } else {
+                  animationController.reverse();
+                  isForward = false;
+                  FocusScope.of(context).unfocus();
+                  //trigger callback if user enter some input
+                  if (characterNameTextFieldController.text.isNotEmpty) {
+                    widget
+                        .searchCallback(characterNameTextFieldController.text);
+                  }
                 }
-              }
-            },
-            icon: const Icon(Icons.search),
-          )
+              },
+              icon: const Icon(Icons.search),
+              color: Theme.of(context).primaryColor)
         ],
       ),
     );
