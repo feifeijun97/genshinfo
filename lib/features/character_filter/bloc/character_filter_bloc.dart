@@ -7,12 +7,13 @@ part 'character_filter_state.dart';
 
 class CharacterFilterBloc
     extends Bloc<CharacterFilterEvent, CharacterFilterState> {
-  CharacterFilterBloc()
-      : super(const CharacterFilterState(
+  CharacterFilterBloc(
+      {List<Vision>? visions, List<WeaponType>? weaponTypes, int? rarity})
+      : super(CharacterFilterState(
           status: CharacterFilterStatus.initial,
-          visions: [],
-          weaponTypes: [],
-          rarity: 0,
+          visions: visions ?? [],
+          weaponTypes: weaponTypes ?? [],
+          rarity: rarity ?? 0,
         )) {
     on<CharacterFilterEvent>((event, emit) {});
     on<VisionSelected>(_onVisionSelected);
@@ -64,10 +65,10 @@ class CharacterFilterBloc
   Future<void> _onRaritySelected(
       RaritySelected event, Emitter<CharacterFilterState> emit) async {
     try {
-      state.copyWith(
+      emit(state.copyWith(
         status: CharacterFilterStatus.success,
         rarity: event.rarity,
-      );
+      ));
     } catch (e) {
       print(e);
       emit(state.copyWith(status: CharacterFilterStatus.failure));

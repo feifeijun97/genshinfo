@@ -1,5 +1,4 @@
 import 'package:genshin_api/genshin_api.dart' show WeaponType;
-import 'package:hexcolor/hexcolor.dart';
 
 extension VisionsExtensions on WeaponType {
   String getAssetPath() {

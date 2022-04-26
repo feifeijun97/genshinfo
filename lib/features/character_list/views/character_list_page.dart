@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:genshin_api/genshin_api.dart' hide Character;
+
 import 'package:genshinfo/features/character_list/bloc/character_list_bloc.dart';
 import 'package:genshinfo/features/character_list/models/character.dart';
 import 'package:genshinfo/features/character_list/widgets/custom_app_bar.dart';
 import 'package:genshinfo/features/character_list/widgets/character_card.dart';
-// import 'package:genshinfo/features/character_list/widgets/element_filter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
+
 
 class CharacterListPage extends StatefulWidget {
   const CharacterListPage({Key? key}) : super(key: key);
@@ -17,12 +17,15 @@ class CharacterListPage extends StatefulWidget {
 }
 
 class CharacterListPageState extends State<CharacterListPage> {
-  CharacterListBloc bloc = CharacterListBloc(GenshinApiClient());
+  late CharacterListBloc bloc;
 
   @override
   void initState() {
+    bloc = BlocProvider.of<CharacterListBloc>(context);
     bloc.add(const RetrieveCharacterList());
     super.initState();
+
+    
   }
 
   @override

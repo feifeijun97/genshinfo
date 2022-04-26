@@ -6,13 +6,16 @@ abstract class CharacterListEvent extends Equatable {
 }
 
 class RetrieveCharacterList extends CharacterListEvent {
-  
-  final Vision? vision;
-  final int? rarity;
-  final String? name;
-  final Weapon? weaponType;
+  final List<Vision> visions;
+  final int rarity;
+  final String name;
+  final List<WeaponType> weaponTypes;
 
-  const RetrieveCharacterList({this.rarity, this.name, this.weaponType, this.vision});
+  const RetrieveCharacterList(
+      {this.rarity = 0,
+      this.name = "",
+      this.weaponTypes = const [],
+      this.visions = const []});
   @override
-  List<Object> get props => [];
+  List<Object> get props => [rarity, name, weaponTypes, visions];
 }

@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:genshin_api/genshin_api.dart';
 import 'package:genshinfo/features/character_filter/bloc/character_filter_bloc.dart';
 import 'package:genshinfo/features/character_filter/widgets/filter_list.dart';
+import 'package:genshinfo/features/character_list/bloc/character_list_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 class CharacterFilterBottomSheet extends StatefulWidget {
@@ -15,10 +16,19 @@ class CharacterFilterBottomSheet extends StatefulWidget {
 
 class CharacterFilterBottomSheetState
     extends State<CharacterFilterBottomSheet> {
-  CharacterFilterBloc bloc = CharacterFilterBloc();
+  late CharacterFilterBloc bloc;
 
   @override
   void initState() {
+    CharacterListBloc charListBloc =
+        BlocProvider.of<CharacterListBloc>(context);
+    bloc = CharacterFilterBloc(
+        visions: charListBloc.state.visions,
+        weaponTypes: charListBloc.state.weaponTypes,
+        rarity: charListBloc.state.rarity);
+
+    //cache images
+
     super.initState();
   }
 
@@ -80,28 +90,42 @@ class CharacterFilterBottomSheetState
                     ),
                     Center(
                       child: RatingBar.builder(
-                        initialRating: 0,
-                        minRating: 4,
-                        direction: Axis.horizontal,
-                        allowHalfRating: false,
-                        itemCount: 5,
-                        itemSize: 25,
-                        itemPadding:
-                            const EdgeInsets.symmetric(horizontal: 4.0),
-                        itemBuilder: (context, _) => const Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        onRatingUpdate: (rarity) => bloc.add(RaritySelected(
-                            rarity: int.parse(rarity.toString()))),
-                      ),
+                          initialRating: state.rarity.toDouble(),
+                          minRating: 4,
+                          maxRating: 5,
+                          direction: Axis.horizontal,
+                          allowHalfRating: false,
+                          itemCount: 5,
+                          itemSize: 25,
+                          itemPadding:
+                              const EdgeInsets.symmetric(horizontal: 8.0),
+                          itemBuilder: (context, _) => const Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                              ),
+                          onRatingUpdate: (rarity) {
+                            //unselect if tap again
+                            if (rarity == state.rarity.toDouble()) {
+                              bloc.add(const RaritySelected(rarity: 0));
+                            } else {
+                              bloc.add(RaritySelected(rarity: rarity.toInt()));
+                            }
+                          }),
                     ),
                     const Expanded(child: SizedBox()),
                     SizedBox(
                       width: 100.w,
                       child: ElevatedButton(
                           child: const Text('Filter'),
-                          onPressed: () => print('asdf')),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            BlocProvider.of<CharacterListBloc>(context).add(
+                              RetrieveCharacterList(
+                                  rarity: state.rarity,
+                                  weaponTypes: state.weaponTypes,
+                                  visions: state.visions),
+                            );
+                          }),
                     ),
                   ],
                 ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:genshin_api/genshin_api.dart' hide Character;
 import 'package:hexcolor/hexcolor.dart';
@@ -33,8 +34,8 @@ Widget characterCard(
           ),
           ClipPath(
             clipper: CharacterImageClipper(),
-            child: Image.network(
-              imageUrl,
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
               width: 180,
               height: 260,
               fit: BoxFit.fitHeight,
@@ -118,7 +119,6 @@ List<HexColor> getVisionHexColor(Vision vision) {
 
 HexColor getVisionTextColor(Vision vision) {
   switch (vision) {
-
     case Vision.pyro:
       return HexColor('#fe925d');
     case Vision.cryo:
