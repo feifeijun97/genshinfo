@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:genshinfo/features/character_filter/views/character_filter_bottom_sheet.dart';
+import 'package:genshinfo/features/character_list/bloc/character_list_bloc.dart';
 import 'package:genshinfo/features/character_list/widgets/search_widget.dart';
 import 'package:sizer/sizer.dart';
 
@@ -36,8 +38,8 @@ class CustomAppBarState extends State<CustomAppBar> {
               Expanded(
                   child: SearchWidget(
                 searchCallback: (characterName) {
-                  // print(characterName);
-                  //TODO:logic
+                  BlocProvider.of<CharacterListBloc>(context)
+                      .add(RetrieveCharacterList(name: characterName));
                 },
                 rowAlignment: MainAxisAlignment.end,
               )),
