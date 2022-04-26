@@ -35,11 +35,11 @@ class GenshinApiClient {
     }
 
     //TODO: uncomment this line due to list too long cause emulator laggy
-    // return List<Character>.from(
-    //     charactersList.map((e) => Character.fromJson(e)));
     return List<Character>.from(
-            charactersList.map((e) => Character.fromJson(e)))
-        .getRange(1, 10)
-        .toList();
+        charactersList.map((e) => Character.fromJson(e)));
+    // return List<Character>.from(
+    //         charactersList.map((e) => Character.fromJson(e)))
+    //     .getRange(1, 10)
+    //     .toList();
   }
 }
