@@ -5,9 +5,9 @@ import 'package:genshinfo/features/character_list/bloc/character_list_bloc.dart'
 import 'package:genshinfo/features/character_list/models/character.dart';
 import 'package:genshinfo/features/character_list/widgets/custom_app_bar.dart';
 import 'package:genshinfo/features/character_list/widgets/character_card.dart';
+import 'package:genshinfo/features/character_list/widgets/loading_character_card.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
-
 
 class CharacterListPage extends StatefulWidget {
   const CharacterListPage({Key? key}) : super(key: key);
@@ -24,8 +24,6 @@ class CharacterListPageState extends State<CharacterListPage> {
     bloc = BlocProvider.of<CharacterListBloc>(context);
     bloc.add(const RetrieveCharacterList());
     super.initState();
-
-    
   }
 
   @override
@@ -38,7 +36,7 @@ class CharacterListPageState extends State<CharacterListPage> {
 
     return Scaffold(
       appBar: const CustomAppBar(),
-      backgroundColor: HexColor('#0f1923'),
+      // backgroundColor: HexColor('#0f1923'),
       body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         Center(
           child: Image.asset(
@@ -55,19 +53,37 @@ class CharacterListPageState extends State<CharacterListPage> {
             bloc: bloc,
             builder: (context, state) {
               if (state.status.isSuccess) {
-                return GridView.count(
-                    crossAxisCount: 2,
-                    scrollDirection: Axis.vertical,
-                    childAspectRatio: (itemWidth / itemHeight),
-                    children: [
-                      for (Character c in state.characterList.characterList)
-                        characterCard(
-                            name: c.name,
-                            vision: c.vision,
-                            weapon: c.weapon,
-                            rarity: c.rarity,
-                            imageUrl: c.imageUrl)
-                    ]);
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridView.count(
+                      crossAxisCount: 2,
+                      scrollDirection: Axis.vertical,
+                      childAspectRatio: (itemWidth / itemHeight),
+                      children: [
+                        for (Character c in state.characterList.characterList)
+                          characterCard(
+                              name: c.name,
+                              vision: c.vision,
+                              weapon: c.weapon,
+                              rarity: c.rarity,
+                              imageUrl: c.imageUrl)
+                      ]),
+                );
+              } else if (state.status.isLoading) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridView.count(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 15,
+                      scrollDirection: Axis.vertical,
+                      childAspectRatio: (itemWidth / itemHeight),
+                      children: [
+                        for (int i = 0; i < 4; i++)
+                          loadingCharacterCard(
+                              Theme.of(context).colorScheme.primary,
+                              Theme.of(context).highlightColor)
+                      ]),
+                );
               }
               return const SizedBox();
             },

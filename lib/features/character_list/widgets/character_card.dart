@@ -12,69 +12,66 @@ Widget characterCard(
     required WeaponType weapon,
     required int rarity,
     required String imageUrl}) {
-  return SizedBox(
-      width: 150,
-      height: 250,
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: <Widget>[
-          ClipPath(
-            clipper: CharacterBackgroundClipper(),
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              width: 180,
-              height: 250,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.bottomLeft,
-                    end: Alignment.topRight,
-                    colors: getVisionHexColor(vision)),
-              ),
+  return Stack(
+    alignment: Alignment.bottomCenter,
+    children: <Widget>[
+      ClipPath(
+        clipper: CharacterBackgroundClipper(),
+        child: Container(
+          alignment: Alignment.bottomCenter,
+          width: 180,
+          height: 250,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.bottomLeft,
+                end: Alignment.topRight,
+                colors: getVisionHexColor(vision)),
+          ),
+        ),
+      ),
+      ClipPath(
+        clipper: CharacterImageClipper(),
+        child: CachedNetworkImage(
+          imageUrl: imageUrl,
+          width: 180,
+          height: 260,
+          fit: BoxFit.fitHeight,
+        ),
+      ),
+      Container(
+        alignment: Alignment.bottomLeft,
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 40, left: 20),
+          child: Text(
+            name,
+            style: TextStyle(
+              inherit: true,
+              fontSize: 30.0,
+              color: getVisionTextColor(vision),
+              shadows: const [
+                Shadow(
+                    // bottomLeft
+                    offset: Offset(-1, -1),
+                    color: Colors.white),
+                Shadow(
+                    // bottomRight
+                    offset: Offset(1, -1),
+                    color: Colors.white),
+                Shadow(
+                    // topRight
+                    offset: Offset(1, 1),
+                    color: Colors.white),
+                Shadow(
+                    // topLeft
+                    offset: Offset(-1, 1),
+                    color: Colors.white),
+              ],
             ),
           ),
-          ClipPath(
-            clipper: CharacterImageClipper(),
-            child: CachedNetworkImage(
-              imageUrl: imageUrl,
-              width: 180,
-              height: 260,
-              fit: BoxFit.fitHeight,
-            ),
-          ),
-          Container(
-            alignment: Alignment.bottomLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 40, left: 20),
-              child: Text(
-                name,
-                style: TextStyle(
-                  inherit: true,
-                  fontSize: 30.0,
-                  color: getVisionTextColor(vision),
-                  shadows: const [
-                    Shadow(
-                        // bottomLeft
-                        offset: Offset(-1, -1),
-                        color: Colors.white),
-                    Shadow(
-                        // bottomRight
-                        offset: Offset(1, -1),
-                        color: Colors.white),
-                    Shadow(
-                        // topRight
-                        offset: Offset(1, 1),
-                        color: Colors.white),
-                    Shadow(
-                        // topLeft
-                        offset: Offset(-1, 1),
-                        color: Colors.white),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
-      ));
+        ),
+      ),
+    ],
+  );
 }
 
 List<HexColor> getVisionHexColor(Vision vision) {

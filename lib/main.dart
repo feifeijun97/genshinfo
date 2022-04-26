@@ -2,6 +2,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:genshinfo/routes/fluro_application.dart';
 import 'package:genshinfo/routes/router.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
 import 'package:genshinfo/features/character_filter/models/vision_extension.dart';
 import 'package:genshinfo/features/character_filter/models/weapon_type_extension.dart';
@@ -57,9 +58,29 @@ class _AppState extends State<MyApp> {
       builder: (context, orientation, deviceType) {
         return MaterialApp(
           theme: ThemeData(
+            scaffoldBackgroundColor: HexColor("#121212"),
             brightness: Brightness.dark,
-            primaryColor: const Color(0xFFFFFFFF).withOpacity(0.6),
-            // textTheme: TextTheme()
+            primaryColor: HexColor("#303030"),
+            colorScheme: ColorScheme(
+                background: HexColor("#303030"),
+                brightness: Brightness.dark,
+                error: HexColor("#FFFFFF"),
+                onBackground: HexColor("#FFFFFF"),
+                onError: HexColor("#FFFFFF"),
+                onPrimary: HexColor("#FFFFFF"),
+                onSecondary: HexColor("#FFFFFF"),
+                onSurface: HexColor("#FFFFFF"),
+                primary: HexColor("#303030"),
+                secondary: HexColor("#424242"),
+                surface: HexColor("#424242")),
+            highlightColor: HexColor("#3A3A3A"),
+            buttonTheme: ButtonThemeData(buttonColor: HexColor("#FFFFFF")),
+            elevatedButtonTheme: ElevatedButtonThemeData(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.blueAccent))),
+            iconTheme: IconThemeData(
+                color: HexColor("#FFFFFF"), opacity: 0.87, size: 24),
           ),
           debugShowCheckedModeBanner: false,
           onGenerateRoute: FluroApplication.router.generator,
