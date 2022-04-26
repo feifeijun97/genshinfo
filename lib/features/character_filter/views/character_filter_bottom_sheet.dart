@@ -51,6 +51,9 @@ class CharacterFilterBottomSheetState
                         style: Theme.of(context).textTheme.headline6,
                       ),
                     ),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Text(
                       'Vision',
                       style: Theme.of(context).textTheme.bodyLarge,
@@ -64,7 +67,7 @@ class CharacterFilterBottomSheetState
                           bloc.add(VisionSelected(vision: item as Vision)),
                     ),
                     const SizedBox(
-                      height: 15,
+                      height: 20,
                     ),
                     Text(
                       'Weapon',
@@ -79,7 +82,7 @@ class CharacterFilterBottomSheetState
                           WeaponTypeSelected(weaponType: item as WeaponType)),
                     ),
                     const SizedBox(
-                      height: 15,
+                      height: 20,
                     ),
                     Text(
                       'Rarity',

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:genshinfo/features/character_list/bloc/character_list_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 class SearchWidget extends StatefulWidget {
@@ -74,7 +76,11 @@ class _SearchWidgetState extends State<SearchWidget>
                 borderRadius: BorderRadius.all(Radius.circular(25))),
           ),
           IconButton(
-              onPressed: () {
+            onPressed: () {
+              if (BlocProvider.of<CharacterListBloc>(context)
+                  .state
+                  .status
+                  .isSuccess) {
                 //show / hide text field
                 if (!isForward) {
                   animationController.forward();
@@ -90,9 +96,10 @@ class _SearchWidgetState extends State<SearchWidget>
                         .searchCallback(characterNameTextFieldController.text);
                   }
                 }
-              },
-              icon: const Icon(Icons.search),
-              color: Theme.of(context).primaryColor)
+              }
+            },
+            icon: const Icon(Icons.search),
+          )
         ],
       ),
     );
