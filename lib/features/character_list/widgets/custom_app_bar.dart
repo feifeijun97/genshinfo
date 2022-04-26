@@ -27,9 +27,10 @@ class CustomAppBarState extends State<CustomAppBar> {
       child: Row(
         children: [
           IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.menu),
-              color: Theme.of(context).primaryColor),
+            onPressed: () {},
+            icon: const Icon(Icons.menu),
+            // color: Theme.of(context).primaryColor,
+          ),
           Expanded(
               child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -44,7 +45,11 @@ class CustomAppBarState extends State<CustomAppBar> {
                 rowAlignment: MainAxisAlignment.end,
               )),
               IconButton(
-                  onPressed: () {
+                onPressed: () {
+                  if (BlocProvider.of<CharacterListBloc>(context)
+                      .state
+                      .status
+                      .isSuccess) {
                     showBottomSheet(
                         context: context,
                         shape: const RoundedRectangleBorder(
@@ -56,9 +61,11 @@ class CustomAppBarState extends State<CustomAppBar> {
                         builder: (context) {
                           return const CharacterFilterBottomSheet();
                         });
-                  },
-                  icon: const Icon(Icons.filter_alt),
-                  color: Theme.of(context).primaryColor),
+                  }
+                },
+                icon: const Icon(Icons.filter_alt),
+                // color: Theme.of(context).primaryColor,
+              ),
             ],
           ))
         ],
