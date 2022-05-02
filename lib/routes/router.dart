@@ -3,7 +3,7 @@ import './route_handlers.dart';
 
 class Routes {
   static String root = "/";
-  // static String demoSimple = "/demo";
+  static String characterDetail = "/character_detail";
   // static String demoSimpleFixedTrans = "/demo/fixedtrans";
   // static String demoFunc = "/demo/func";
   // static String deepLink = "/message";
@@ -17,7 +17,7 @@ class Routes {
     );
 
     router.define(root, handler: rootHandler);
-    // router.define(demoSimple, handler: demoRouteHandler);
+    router.define(characterDetail, handler: characterDetailHandler);
     // router.define(demoSimpleFixedTrans,
     //     handler: demoRouteHandler, transitionType: TransitionType.inFromLeft);
     // router.define(demoFunc, handler: demoFunctionHandler);

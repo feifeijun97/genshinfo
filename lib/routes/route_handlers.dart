@@ -5,7 +5,10 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:genshin_api/genshin_api.dart' show GenshinApiClient;
+import 'package:genshin_api/genshin_api.dart' hide Character;
+import 'package:genshinfo/features/character_detail/views/character_detail_view.dart';
 import 'package:genshinfo/features/character_list/bloc/character_list_bloc.dart';
+import 'package:genshinfo/features/character_list/models/character.dart';
 import 'package:genshinfo/features/character_list/views/character_list_page.dart';
 
 var rootHandler = Handler(
@@ -16,6 +19,15 @@ var rootHandler = Handler(
     );
   },
 );
+
+var characterDetailHandler =
+    Handler(handlerFunc: (context, params) {
+    final character = context?.settings?.arguments as Character;
+
+  return CharacterDetailPage(
+    character: character,
+  );
+});
 
 // var demoRouteHandler = Handler(
 //     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
