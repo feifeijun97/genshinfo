@@ -8,17 +8,19 @@ class Character extends Equatable {
       required this.vision,
       required this.weapon,
       required this.imageUrl,
-      required this.rarity});
+      required this.rarity,
+      required this.detailImageUrl});
 
   // const Character({required this.name});
 
   @override
-  List<Object?> get props => [name, vision, weapon, imageUrl, rarity];
+  List<Object?> get props => [name, vision, weapon, imageUrl, rarity, detailImageUrl];
 
   final String name;
   final Vision vision;
   final WeaponType weapon;
   final String imageUrl;
+  final String detailImageUrl;
   final int rarity;
 
   factory Character.fromRepository(genshin_api.Character character) {
@@ -31,6 +33,7 @@ class Character extends Equatable {
         vision: character.vision,
         weapon: character.weapon,
         imageUrl: "https://api.genshin.dev/characters/$characterName/portrait",
+        detailImageUrl : "https://api.genshin.dev/characters/$characterName/card",
         rarity: character.rarity);
   }
 
@@ -39,12 +42,14 @@ class Character extends Equatable {
       Vision? vision,
       WeaponType? weapon,
       String? imageUrl,
+      String? detailImageUrl,
       int? rarity}) {
     return Character(
         name: name ?? this.name,
         vision: vision ?? this.vision,
         weapon: weapon ?? this.weapon,
         imageUrl: imageUrl ?? this.imageUrl,
+        detailImageUrl: detailImageUrl ?? this.detailImageUrl,
         rarity: rarity ?? this.rarity);
   }
 
