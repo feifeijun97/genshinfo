@@ -45,8 +45,9 @@ Widget characterCard(
           child: Text(
             name,
             style: TextStyle(
-              inherit: true,
-              fontSize: 30.0,
+              // inherit: true,
+              fontSize: 35.0,
+              fontWeight: FontWeight.w400,
               color: getVisionTextColor(vision),
               shadows: const [
                 Shadow(
