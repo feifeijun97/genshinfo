@@ -9,12 +9,20 @@ class Character extends Equatable {
       required this.weapon,
       required this.imageUrl,
       required this.rarity,
-      required this.detailImageUrl});
+      required this.detailImageUrl,
+      required this.affiliation,
+      required this.constellationName,
+      this.birthday,
+      required this.description,
+      required this.talents,
+      required this.passiveTalents,
+      required this.constellations});
 
   // const Character({required this.name});
 
   @override
-  List<Object?> get props => [name, vision, weapon, imageUrl, rarity, detailImageUrl];
+  List<Object?> get props =>
+      [name, vision, weapon, imageUrl, rarity, detailImageUrl];
 
   final String name;
   final Vision vision;
@@ -22,6 +30,13 @@ class Character extends Equatable {
   final String imageUrl;
   final String detailImageUrl;
   final int rarity;
+  final String affiliation;
+  final String constellationName;
+  final String? birthday;
+  final String description;
+  final List<Talent> talents;
+  final List<Talent> passiveTalents;
+  final List<Constellation> constellations;
 
   factory Character.fromRepository(genshin_api.Character character) {
     //get firt name of the character if full name returned
@@ -29,28 +44,52 @@ class Character extends Equatable {
     String characterName = modifyName(character.name);
 
     return Character(
-        name: character.name,
-        vision: character.vision,
-        weapon: character.weapon,
-        imageUrl: "https://api.genshin.dev/characters/$characterName/portrait",
-        detailImageUrl : "https://api.genshin.dev/characters/$characterName/card",
-        rarity: character.rarity);
+      name: character.name,
+      vision: character.vision,
+      weapon: character.weapon,
+      imageUrl: "https://api.genshin.dev/characters/$characterName/portrait",
+      detailImageUrl: "https://api.genshin.dev/characters/$characterName/card",
+      birthday: character.birthday,
+      rarity: character.rarity,
+      affiliation: character.affiliation,
+      constellationName: character.constellationName,
+      talents: character.talents,
+      constellations: character.constellations,
+      description: character.description,
+      passiveTalents: character.passiveTalents,
+    );
   }
 
-  Character copyWith(
-      {String? name,
-      Vision? vision,
-      WeaponType? weapon,
-      String? imageUrl,
-      String? detailImageUrl,
-      int? rarity}) {
+  Character copyWith({
+    String? name,
+    Vision? vision,
+    WeaponType? weapon,
+    String? imageUrl,
+    String? detailImageUrl,
+    String? birthday,
+    int? rarity,
+    String? affiliation,
+    String? constellationName,
+    String? description,
+    List<Talent>? talents,
+    List<Talent>? passiveTalents,
+    List<Constellation>? constellations,
+  }) {
     return Character(
-        name: name ?? this.name,
-        vision: vision ?? this.vision,
-        weapon: weapon ?? this.weapon,
-        imageUrl: imageUrl ?? this.imageUrl,
-        detailImageUrl: detailImageUrl ?? this.detailImageUrl,
-        rarity: rarity ?? this.rarity);
+      name: name ?? this.name,
+      vision: vision ?? this.vision,
+      weapon: weapon ?? this.weapon,
+      imageUrl: imageUrl ?? this.imageUrl,
+      detailImageUrl: detailImageUrl ?? this.detailImageUrl,
+      rarity: rarity ?? this.rarity,
+      affiliation: affiliation ?? this.affiliation,
+      constellationName: constellationName ?? this.constellationName,
+      constellations: constellations ?? this.constellations,
+      description: description ?? this.description,
+      passiveTalents: passiveTalents ?? this.passiveTalents,
+      talents: talents ?? this.talents,
+      birthday: birthday ?? this.birthday,
+    );
   }
 
   /// Change the returned name to url-suitable name

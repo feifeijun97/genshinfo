@@ -79,19 +79,23 @@ class Character {
   final List<Talent> talents;
   final List<Talent> passiveTalents;
   final List<Constellation> constellations;
+  // @JsonKey(fromJson: _urlNameFromJson, name: "name")
+  // final String urlName;
 
   Character(
-      this.name,
-      this.vision,
-      this.weapon,
-      this.rarity,
-      this.affiliation,
-      this.constellationName,
-      this.birthday,
-      this.description,
-      this.talents,
-      this.passiveTalents,
-      this.constellations);
+    this.name,
+    this.vision,
+    this.weapon,
+    this.rarity,
+    this.affiliation,
+    this.constellationName,
+    this.birthday,
+    this.description,
+    this.talents,
+    this.passiveTalents,
+    this.constellations,
+    // this.urlName
+  );
 
   factory Character.fromJson(Map<String, dynamic> json) =>
       _$CharacterFromJson(json);
@@ -114,4 +118,32 @@ class Character {
         return "";
     }
   }
+
+  // static String _urlNameFromJson(String name) {
+  //   List<String> takeLastNameList = [
+  //     'Kamisato Ayaka',
+  //     'Sangonomiya Kokomi',
+  //     'Kujou Sara',
+  //     'Kaedehara Kazuha'
+  //   ];
+  //   List<String> takeFirstNameList = ['Raiden Shogun'];
+  //   List<String> addDashList = ['Arataki Itto', 'Hu Tao', 'Yun Jin'];
+  //   String traveler = "Traveler";
+  //   String finalName = "";
+  //   if (name == traveler) {
+  //     finalName = "Traveler-Anemo";
+  //   } else if (takeFirstNameList.contains(name)) {
+  //     var splittedName = name.split(' ');
+  //     finalName = splittedName[0];
+  //   } else if (takeLastNameList.contains(name)) {
+  //     var splittedName = name.split(' ');
+  //     finalName = splittedName[1];
+  //   } else if (addDashList.contains(name)) {
+  //     finalName = name.replaceAll(' ', '-');
+  //   } else {
+  //     finalName = name;
+  //   }
+
+  //   return finalName.toLowerCase();
+  // }
 }
