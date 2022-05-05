@@ -48,7 +48,7 @@ class CharacterFilterBottomSheetState
                     Center(
                       child: Text(
                         'Filter',
-                        style: Theme.of(context).textTheme.headline6,
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
                     const SizedBox(
@@ -56,7 +56,7 @@ class CharacterFilterBottomSheetState
                     ),
                     Text(
                       'Vision',
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     const SizedBox(
                       height: 10,
@@ -71,7 +71,7 @@ class CharacterFilterBottomSheetState
                     ),
                     Text(
                       'Weapon',
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     const SizedBox(
                       height: 10,
@@ -86,7 +86,7 @@ class CharacterFilterBottomSheetState
                     ),
                     Text(
                       'Rarity',
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     const SizedBox(
                       height: 10,
@@ -119,7 +119,10 @@ class CharacterFilterBottomSheetState
                     SizedBox(
                       width: 100.w,
                       child: ElevatedButton(
-                          child: const Text('Filter'),
+                          child: Text(
+                            'Filter',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                           onPressed: () {
                             Navigator.pop(context);
                             BlocProvider.of<CharacterListBloc>(context).add(
