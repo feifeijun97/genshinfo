@@ -14,8 +14,6 @@ import 'package:sizer/sizer.dart';
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
 
-import 'character_list_test.mocks.dart';
-
 class MockGenshinApiClient extends Mock implements GenshinApiClient {}
 
 class MockHttpClient extends Mock implements http.Client {}
