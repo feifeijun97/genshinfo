@@ -81,6 +81,34 @@ class _AppState extends State<MyApp> {
                         MaterialStateProperty.all<Color>(Colors.blueAccent))),
             iconTheme: IconThemeData(
                 color: HexColor("#FFFFFF"), opacity: 0.87, size: 24),
+            cardTheme: CardTheme(
+              color: HexColor("#303030"),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
+            ),
+            textTheme: TextTheme(
+              displayLarge:
+                  TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              displayMedium: TextStyle(fontSize: 14),
+              displaySmall:
+                  TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              titleLarge: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              titleMedium: TextStyle(fontSize: 14),
+              titleSmall: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              bodyLarge: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+              bodyMedium: TextStyle(fontSize: 14),
+              bodySmall: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              headlineLarge:
+                  TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              headlineMedium:
+                  TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              headlineSmall:
+                  TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              labelLarge: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              labelMedium: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              labelSmall: TextStyle(fontSize: 12, color: HexColor("#bdc1c6")),
+            ),
           ),
           debugShowCheckedModeBanner: false,
           onGenerateRoute: FluroApplication.router.generator,
