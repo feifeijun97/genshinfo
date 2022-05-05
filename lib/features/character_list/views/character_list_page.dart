@@ -8,6 +8,9 @@ import 'package:genshinfo/features/character_list/widgets/loading_character_card
 import 'package:sizer/sizer.dart';
 
 import '../../../routes/fluro_application.dart';
+import 'package:genshin_api/genshin_api.dart' show Vision, WeaponType;
+import 'package:genshinfo/features/character_filter/models/vision_extension.dart';
+import 'package:genshinfo/features/character_filter/models/weapon_type_extension.dart';
 
 class CharacterListPage extends StatefulWidget {
   const CharacterListPage({Key? key}) : super(key: key);
@@ -18,12 +21,29 @@ class CharacterListPage extends StatefulWidget {
 
 class CharacterListPageState extends State<CharacterListPage> {
   late CharacterListBloc bloc;
+  List<Image> imgList = <Image>[];
 
   @override
   void initState() {
     bloc = BlocProvider.of<CharacterListBloc>(context);
     bloc.add(const RetrieveCharacterList());
     super.initState();
+    //precache all images in filter bottom sheet
+    for (var e in Vision.values) {
+      imgList.add(Image.asset(e.getAssetPath()));
+    }
+
+    for (var e in WeaponType.values) {
+      imgList.add(Image.asset(e.getAssetPath()));
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    for (Image img in imgList) {
+      precacheImage(img.image, context);
+    }
   }
 
   @override
