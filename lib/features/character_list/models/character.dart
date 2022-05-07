@@ -101,7 +101,12 @@ class Character extends Equatable {
       'Kaedehara Kazuha'
     ];
     List<String> takeFirstNameList = ['Raiden Shogun'];
-    List<String> addDashList = ['Arataki Itto', 'Hu Tao', 'Yun Jin'];
+    List<String> addDashList = [
+      'Arataki Itto',
+      'Hu Tao',
+      'Yun Jin',
+      'Yae Miko'
+    ];
     String traveler = "Traveler";
     String finalName = "";
     if (name == traveler) {
