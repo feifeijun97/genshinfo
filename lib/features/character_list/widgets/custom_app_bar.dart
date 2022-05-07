@@ -26,11 +26,11 @@ class CustomAppBarState extends State<CustomAppBar> {
       color: Colors.transparent,
       child: Row(
         children: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.menu),
-            // color: Theme.of(context).primaryColor,
-          ),
+          // IconButton(
+          //   onPressed: () {},
+          //   icon: const Icon(Icons.menu),
+          //   // color: Theme.of(context).primaryColor,
+          // ),
           Expanded(
               child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
