@@ -138,6 +138,7 @@ class CharacterDetailPage extends StatelessWidget {
                     const SizedBox(height: 6.5),
                     Flexible(
                       child: ExpansionTile(
+                          initiallyExpanded: true,
                           tilePadding: const EdgeInsets.all(0),
                           title: titleText('Skills', context),
                           children: [
@@ -146,6 +147,7 @@ class CharacterDetailPage extends StatelessWidget {
                     ),
                     Flexible(
                       child: ExpansionTile(
+                          initiallyExpanded: true,
                           tilePadding: const EdgeInsets.all(0),
                           title: titleText('Constellations', context),
                           children: [
@@ -155,6 +157,7 @@ class CharacterDetailPage extends StatelessWidget {
                     ),
                     Flexible(
                       child: ExpansionTile(
+                          initiallyExpanded: true,
                           tilePadding: const EdgeInsets.all(0),
                           title: titleText('Passive', context),
                           children: [
