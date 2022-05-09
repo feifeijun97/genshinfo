@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:genshin_api/genshin_api.dart' show Vision, WeaponType;
-import 'package:genshinfo/features/character_filter/models/vision_extension.dart';
-import 'package:genshinfo/features/character_filter/models/weapon_type_extension.dart';
+import 'package:genshinfo/extensions/vision_extension.dart';
+import 'package:genshinfo/extensions/weapon_type_extension.dart';
 
 class FilterList extends StatelessWidget {
   final List<Object> selectedItems;

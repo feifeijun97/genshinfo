@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:genshinfo/extensions/string_extension.dart';
-import 'package:genshinfo/features/character_filter/models/vision_extension.dart';
-import 'package:genshinfo/features/character_filter/models/weapon_type_extension.dart';
 import 'package:genshin_api/genshin_api.dart' show Vision, WeaponType;
+import 'package:genshinfo/extensions/vision_extension.dart';
+import 'package:genshinfo/extensions/weapon_type_extension.dart';
 
 void main() {
   group('extension test', () {

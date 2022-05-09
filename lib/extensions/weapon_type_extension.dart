@@ -1,6 +1,6 @@
 import 'package:genshin_api/genshin_api.dart' show WeaponType;
 
-extension VisionsExtensions on WeaponType {
+extension WeaponTypeExtensions on WeaponType {
   String getAssetPath() {
     // ignore: unnecessary_this
     return 'images/weapon/${this.name.toLowerCase()}.png';
@@ -24,5 +24,6 @@ extension VisionsExtensions on WeaponType {
   //       // TODO: Handle this case.
   //       break;
   //   }
+  
 
 }

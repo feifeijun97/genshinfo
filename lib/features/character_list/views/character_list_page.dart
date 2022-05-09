@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:genshinfo/extensions/vision_extension.dart';
+import 'package:genshinfo/extensions/weapon_type_extension.dart';
 
 import 'package:genshinfo/features/character_list/bloc/character_list_bloc.dart';
 import 'package:genshinfo/features/character_list/widgets/custom_app_bar.dart';
@@ -9,8 +11,6 @@ import 'package:sizer/sizer.dart';
 
 import '../../../routes/fluro_application.dart';
 import 'package:genshin_api/genshin_api.dart' show Vision, WeaponType;
-import 'package:genshinfo/features/character_filter/models/vision_extension.dart';
-import 'package:genshinfo/features/character_filter/models/weapon_type_extension.dart';
 
 class CharacterListPage extends StatefulWidget {
   const CharacterListPage({Key? key}) : super(key: key);
