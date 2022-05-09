@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:genshin_api/genshin_api.dart' hide Character;
-import 'package:hexcolor/hexcolor.dart';
+import 'package:genshinfo/extensions/vision_extension.dart';
 
 import 'clippers/character_background_clipper.dart';
 import 'clippers/character_image_clipper.dart';
@@ -25,7 +25,7 @@ Widget characterCard(
             gradient: LinearGradient(
                 begin: Alignment.bottomLeft,
                 end: Alignment.topRight,
-                colors: getVisionHexColor(vision)),
+                colors: vision.getVisionHexColor()),
           ),
         ),
       ),
@@ -36,6 +36,10 @@ Widget characterCard(
           width: 180,
           height: 260,
           fit: BoxFit.fitHeight,
+          errorWidget: (context, url, stack) => const Text(
+            "Unable to load image",
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
       Container(
@@ -48,7 +52,7 @@ Widget characterCard(
               // inherit: true,
               fontSize: 35.0,
               fontWeight: FontWeight.w400,
-              color: getVisionTextColor(vision),
+              color: vision.getVisionTextColor(),
               shadows: const [
                 Shadow(
                     // bottomLeft
@@ -73,63 +77,4 @@ Widget characterCard(
       ),
     ],
   );
-}
-
-List<HexColor> getVisionHexColor(Vision vision) {
-  switch (vision) {
-    case Vision.pyro:
-      return [
-        HexColor('#E46F0D'),
-        HexColor('#F9A661'),
-      ];
-    case Vision.cryo:
-      return [
-        HexColor('#448DC7'),
-        HexColor('#77B8EB'),
-      ];
-    case Vision.anemo:
-      return [
-        HexColor('#019E8A'),
-        HexColor('#48FFE8'),
-      ];
-    case Vision.geo:
-      return [
-        HexColor('#9a6604'),
-        HexColor('#ffd589'),
-      ];
-    case Vision.electro:
-      return [
-        HexColor('#61459c'),
-        HexColor('#7b5db7'),
-      ];
-    case Vision.hydro:
-      return [
-        HexColor('#07519D'),
-        HexColor('#459CF5'),
-      ];
-    case Vision.dendro:
-      return [
-        HexColor('#04862A'),
-        HexColor('#00BC37'),
-      ];
-  }
-}
-
-HexColor getVisionTextColor(Vision vision) {
-  switch (vision) {
-    case Vision.pyro:
-      return HexColor('#fe925d');
-    case Vision.cryo:
-      return HexColor("3b83bd");
-    case Vision.anemo:
-      return HexColor('#72e2c3');
-    case Vision.geo:
-      return HexColor('#e3b342');
-    case Vision.electro:
-      return HexColor('#A754DC');
-    case Vision.hydro:
-      return HexColor('#21e1eb');
-    case Vision.dendro:
-      return HexColor('#2FD340');
-  }
 }

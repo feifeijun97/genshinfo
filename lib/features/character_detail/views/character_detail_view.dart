@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:genshinfo/extensions/string_extension.dart';
+import 'package:genshinfo/extensions/vision_extension.dart';
+import 'package:genshinfo/extensions/weapon_type_extension.dart';
 import 'package:genshinfo/features/character_detail/widgets/constellation_list.dart';
 import 'package:genshinfo/features/character_detail/widgets/passive_skill_list.dart';
 import 'package:genshinfo/features/character_detail/widgets/skill_list.dart';
-import 'package:genshinfo/features/character_filter/models/weapon_type_extension.dart';
 import 'package:genshinfo/features/character_list/models/character.dart';
 import 'package:sizer/sizer.dart';
-import 'package:genshinfo/features/character_filter/models/vision_extension.dart';
 
 class CharacterDetailPage extends StatelessWidget {
   final Character character;
@@ -30,6 +30,10 @@ class CharacterDetailPage extends StatelessWidget {
                   imageUrl: character.detailImageUrl,
                   width: 100.w,
                   height: 45.h,
+                  errorWidget: (context, url, stack) => const Text(
+                    "Unable to load image",
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
               Padding(
