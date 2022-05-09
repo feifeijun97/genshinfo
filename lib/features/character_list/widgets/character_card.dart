@@ -31,14 +31,13 @@ Widget characterCard(
       ),
       ClipPath(
         clipper: CharacterImageClipper(),
-        child: CachedNetworkImage(
-          imageUrl: imageUrl,
-          width: 180,
-          height: 260,
-          fit: BoxFit.fitHeight,
-          errorWidget: (context, url, stack) => const Text(
-            "Unable to load image",
-            textAlign: TextAlign.center,
+        child: Center(
+          child: CachedNetworkImage(
+            imageUrl: imageUrl,
+            width: 180,
+            height: 260,
+            fit: BoxFit.fitHeight,
+            errorWidget: (context, url, stack) => const SizedBox(),
           ),
         ),
       ),

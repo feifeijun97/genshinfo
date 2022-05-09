@@ -1,7 +1,8 @@
 
 # genshinfo
 
-A genshin wiki liked app that for learning purpose. The data is retrieve from https://api.genshin.dev. The architecture is inpired by flutter_bloc example. The APK can be download <a href="https://drive.google.com/file/d/1CvKX3aeVxUIHsJw7ddPBSi8b3jmElUnv/view?usp=sharing">here</a> 
+A genshin wiki liked app that for learning purpose. The data is retrieve from https://api.genshin.dev. The architecture is inpired by <a href="https://pub.dev/packages/flutter_bloc"> flutter_bloc </a>. 
+<!-- The APK can be download <a href="https://drive.google.com/file/d/1DdXPYT3ChPULGIUlqerxv9zdeK0PZenn/view?usp=sharing">here</a> -->
 
 ## Features
 

@@ -30,9 +30,10 @@ class CharacterDetailPage extends StatelessWidget {
                   imageUrl: character.detailImageUrl,
                   width: 100.w,
                   height: 45.h,
-                  errorWidget: (context, url, stack) => const Text(
-                    "Unable to load image",
-                    textAlign: TextAlign.center,
+                  errorWidget: (context, url, stack) =>const Center(
+                    child:  Text(
+                      "Unable to load image",
+                    ),
                   ),
                 ),
               ),
